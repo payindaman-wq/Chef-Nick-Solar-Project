@@ -18,3 +18,4 @@ Solar + battery + generator system for Chef Nick's 560 sq ft workshop/kitchen, d
 
 ## Status
 - 2026-10-06: Repo created, intake questionnaire drafted.
+- 2026-10-06: Site walkthrough, off-grid design basis, preliminary load calc + sizing (docs/04). Architecture: one central expandable system. Next: one-line schematic + priced BOM.
