@@ -53,3 +53,4 @@ Meeting checklist. Answers update the load calc (`calc/load_calc.py`) and parts 
 29. Who pays vendors: Nick directly, or through me?
 30. Delivery: can a freight truck reach the site? Is there a forklift or tractor to unload a ~1,500 lb panel pallet?
 31. Internet or cell signal at the site (for remote system monitoring)?
+32. Will the kitchen business (LLC?) buy and own the system? Has your CPA weighed in on bonus depreciation, the 30% business credit (must be running by end of 2027), and what happens when the house connects later?
