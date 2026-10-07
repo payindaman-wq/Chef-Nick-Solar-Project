@@ -32,8 +32,8 @@ well being drilled, ground mount acceptable.
 | Component | Spec | Notes |
 |---|---|---|
 | PV array | ~15 kW, ground mount, 45-50 deg fixed tilt, due south | Steep tilt favors winter and sheds snow. Leave pad space to extend for the house. Ground mount is not on a building, so rapid-shutdown hardware is not required (NEC 690.12). |
-| Inverter | One 48 V off-grid hybrid, 12-16 kW continuous, with generator input + 2-wire gen auto-start (EG4 18kPV / FlexBOSS21 or Sol-Ark 15K class) | Phase 2 adds a second identical unit in parallel for the house. Add a manual bypass switch so the generator can feed the kitchen directly if the inverter fails. |
-| Battery | ~57 kWh LiFePO4, 48 V (e.g., 4 x 14.3 kWh wall/rack units) | 1.25 days usable. Generator auto-starts below ~25-30% charge. Expandable. |
+| Inverter | 2 x EG4 6000XP in parallel (12 kW, 24 kW surge, 16 kW PV input) | Chosen 2026-10-06 over one 18kPV: cheaper, off-grid native, redundant. Phase 2 adds more units. |
+| Battery | Start with 42.9 kWh (3 x EG4 WallMount Indoor 14.3 kWh), add a 4th for ~57 kWh / 1.25 days | Frugal start chosen 2026-10-06. Generator auto-starts below ~25-30% charge. |
 | Generator | 24 kW propane standby (Generac class) | Charges batteries in winter/cloudy stretches. Must accept a 2-wire start signal. Confirm warranty covers off-grid "prime power" use before buying. |
 | Power shed | ~8x10 insulated shed between the kitchen and future house site, small heater to keep batteries above 32 F | Keeps batteries, heat and noise out of the kitchen; becomes the hub for the house in Phase 2. Generator on a pad next to it. |
 | Well pump | Soft-start / variable-speed pump (Grundfos SQ type) + pressure tank | Cuts the ~7.5 kW start-up surge to ~2-3 kW, so the inverter doesn't need extra surge headroom. |
