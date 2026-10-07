@@ -1,0 +1,144 @@
+<svg class="oneline" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One-line diagram: ground-mount PV array to power shed with two EG4 6000XP inverters, three 14.3 kWh batteries and a 24 kW propane generator, feeding the kitchen's 100 A panel, with Phase 2 house expansion dashed">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--ink-2)"/></marker>
+  </defs>
+  <!-- Power shed boundary -->
+  <rect x="260" y="40" width="640" height="460" rx="6" class="zone"/>
+  <text x="276" y="62" class="zlabel">POWER SHED · 8×10 insulated</text>
+
+  <!-- PV array -->
+  <text x="20" y="52" class="zlabel">GROUND-MOUNT ARRAY</text>
+  <g class="pv">
+    <rect x="20" y="64" width="210" height="100" rx="3"/>
+    <rect x="20" y="176" width="210" height="100" rx="3"/>
+  </g>
+  <path class="cells" d="M43 64v100M66 64v100M90 64v100M113 64v100M136 64v100M160 64v100M183 64v100M206 64v100M20 114h210M43 176v100M66 176v100M90 176v100M113 176v100M136 176v100M160 176v100M183 176v100M206 176v100M20 226h210"/>
+  <text x="125" y="296" class="t-b" text-anchor="middle">36 × 440 W = 15.84 kW</text>
+  <text x="125" y="314" class="t-s" text-anchor="middle">4 strings of 9 · 45–50° tilt · due south</text>
+  <rect x="20" y="340" width="210" height="70" rx="3" class="future"/>
+  <text x="125" y="370" class="t-f" text-anchor="middle">Phase 2: extend rows</text>
+  <text x="125" y="388" class="t-s" text-anchor="middle">for the house</text>
+
+  <!-- PV DC home run -->
+  <path d="M230 90 H280" class="w-pv"/>
+  <path d="M230 230 H255 V105 H280" class="w-pv"/>
+  <text x="20" y="440" class="t-s">PV DC home run ~100 ft in buried</text>
+  <text x="20" y="456" class="t-s">conduit (≤ ~400 V on the coldest morning)</text>
+
+  <!-- Combiner / disconnect -->
+  <rect x="280" y="70" width="100" height="56" rx="4" class="box"/>
+  <text x="330" y="93" class="t-b" text-anchor="middle">PV disconnect</text>
+  <text x="330" y="110" class="t-s" text-anchor="middle">+ DC surge prot.</text>
+
+  <!-- PV to inverters -->
+  <path d="M380 112 H470 V170" class="w-pv"/>
+  <path d="M380 84 H650 V170" class="w-pv"/>
+  <text x="400" y="134" class="t-s">strings 1–2</text>
+  <text x="560" y="76" class="t-s">strings 3–4</text>
+
+  <!-- Inverters -->
+  <rect x="420" y="170" width="140" height="100" rx="4" class="box inv"/>
+  <text x="490" y="200" class="t-b" text-anchor="middle">EG4 6000XP #1</text>
+  <text x="490" y="218" class="t-s" text-anchor="middle">6 kW · 8 kW PV</text>
+  <text x="490" y="234" class="t-s" text-anchor="middle">2 MPPT · 125 A chg</text>
+  <rect x="600" y="170" width="140" height="100" rx="4" class="box inv"/>
+  <text x="670" y="200" class="t-b" text-anchor="middle">EG4 6000XP #2</text>
+  <text x="670" y="218" class="t-s" text-anchor="middle">6 kW · 8 kW PV</text>
+  <text x="670" y="234" class="t-s" text-anchor="middle">2 MPPT · 125 A chg</text>
+  <text x="580" y="292" class="t-s" text-anchor="middle">paralleled = 12 kW 120/240 V</text>
+
+  <!-- AC outputs (hop over PV line at x=650) -->
+  <path d="M540 170 V140 H644 a6 6 0 0 1 12 0 H780" class="w-ac"/>
+  <path d="M740 220 H780" class="w-ac"/>
+
+  <!-- DC battery bus -->
+  <path d="M490 270 V330 M670 270 V330 M470 330 H690 M580 330 V344" class="w-dc"/>
+  <text x="474" y="322" class="t-s">48 V DC bus</text>
+  <rect x="566" y="344" width="28" height="18" rx="2" class="fuse"/>
+  <text x="600" y="358" class="t-s">Class T fuse</text>
+  <path d="M580 362 V380 M450 380 H690 M450 380 V400 M570 380 V400 M690 380 V400" class="w-dc"/>
+
+  <!-- Batteries -->
+  <g class="batt">
+    <rect x="400" y="400" width="100" height="60" rx="4"/>
+    <rect x="520" y="400" width="100" height="60" rx="4"/>
+    <rect x="640" y="400" width="100" height="60" rx="4"/>
+  </g>
+  <text x="450" y="426" class="t-b" text-anchor="middle">14.3 kWh</text>
+  <text x="570" y="426" class="t-b" text-anchor="middle">14.3 kWh</text>
+  <text x="690" y="426" class="t-b" text-anchor="middle">14.3 kWh</text>
+  <text x="450" y="444" class="t-s" text-anchor="middle">heated</text>
+  <text x="570" y="444" class="t-s" text-anchor="middle">heated</text>
+  <text x="690" y="444" class="t-s" text-anchor="middle">heated</text>
+  <text x="570" y="486" class="t-s" text-anchor="middle">EG4 WallMount Indoor LiFePO4 · 42.9 kWh</text>
+  <rect x="280" y="400" width="100" height="60" rx="4" class="future"/>
+  <text x="330" y="426" class="t-f" text-anchor="middle">Phase 2</text>
+  <text x="330" y="444" class="t-s" text-anchor="middle">+ batteries</text>
+  <rect x="280" y="170" width="110" height="100" rx="4" class="future"/>
+  <text x="335" y="214" class="t-f" text-anchor="middle">Phase 2</text>
+  <text x="335" y="232" class="t-s" text-anchor="middle">+ 6000XPs</text>
+
+  <!-- Shed AC panel -->
+  <rect x="780" y="120" width="100" height="200" rx="4" class="box panel"/>
+  <text x="830" y="144" class="t-b" text-anchor="middle">Shed AC</text>
+  <text x="830" y="160" class="t-b" text-anchor="middle">panel</text>
+  <text x="830" y="186" class="t-s" text-anchor="middle">inverter out</text>
+  <text x="830" y="202" class="t-s" text-anchor="middle">gen → GEN ports</text>
+  <text x="830" y="218" class="t-s" text-anchor="middle">bypass interlock</text>
+  <text x="830" y="234" class="t-s" text-anchor="middle">AC surge prot.</text>
+  <text x="830" y="250" class="t-s" text-anchor="middle">ground rods</text>
+
+  <!-- Generator -->
+  <path d="M960 415 H850 V320" class="w-ac"/>
+  <text x="862" y="406" class="t-s">60 A gen feeder</text>
+  <rect x="960" y="380" width="160" height="70" rx="4" class="box gen"/>
+  <text x="1040" y="408" class="t-b" text-anchor="middle">Generac 24 kW</text>
+  <text x="1040" y="426" class="t-s" text-anchor="middle">propane · on pad</text>
+  <path d="M740 255 H760 V480 H980 V450" class="w-ctl"/>
+  <rect x="748" y="335" width="24" height="24" rx="2" class="box"/>
+  <text x="776" y="352" class="t-s">start relay</text>
+  <text x="784" y="472" class="t-s">2-wire auto-start on low battery</text>
+
+  <!-- Propane -->
+  <rect x="960" y="560" width="180" height="56" rx="28" class="tank"/>
+  <text x="1050" y="585" class="t-b" text-anchor="middle">Propane, 500 gal</text>
+  <text x="1050" y="602" class="t-s" text-anchor="middle">(250 planned; upsize)</text>
+  <path d="M1080 560 V450" class="w-gas"/>
+  <path d="M1160 588 H1170 V320" class="w-gas"/>
+  <path d="M1140 588 H1160" class="w-gas"/>
+  <text x="1186" y="530" class="t-s" transform="rotate(-90 1186 530)">to burners + tankless WH</text>
+
+  <!-- Feeder to kitchen -->
+  <path d="M880 200 H958" class="w-ac" marker-end="url(#arr)"/>
+  <text x="886" y="190" class="t-s">100 A feeder</text>
+  <text x="886" y="222" class="t-s">4-wire, trenched</text>
+
+  <!-- Kitchen -->
+  <rect x="960" y="120" width="200" height="200" rx="6" class="zone k"/>
+  <text x="974" y="142" class="zlabel">KITCHEN · 560 sq ft</text>
+  <rect x="974" y="154" width="172" height="30" rx="3" class="box panel"/>
+  <text x="1060" y="174" class="t-b" text-anchor="middle">100 A panel</text>
+  <text x="978" y="206" class="t-s">• Reach-in fridge + freezer</text>
+  <text x="978" y="224" class="t-s">• Hood exhaust fan</text>
+  <text x="978" y="242" class="t-s">• Well pump (soft-start)</text>
+  <text x="978" y="260" class="t-s">• Mini-split</text>
+  <text x="978" y="278" class="t-s">• Lights, outlets, tools</text>
+  <text x="978" y="296" class="t-s">• Tankless WH controls</text>
+
+  <!-- Phase 2 house -->
+  <path d="M850 120 V62 H958" class="w-future" marker-end="url(#arr)"/>
+  <rect x="960" y="30" width="200" height="64" rx="6" class="future"/>
+  <text x="1060" y="56" class="t-f" text-anchor="middle">Phase 2 · future house</text>
+  <text x="1060" y="76" class="t-s" text-anchor="middle">200 A feeder from shed</text>
+
+  <!-- Legend -->
+  <g transform="translate(20 548)">
+    <text x="0" y="0" class="zlabel">LEGEND</text>
+    <path d="M0 22 H40" class="w-pv"/><text x="50" y="26" class="t-s">PV DC (high voltage)</text>
+    <path d="M0 46 H40" class="w-dc"/><text x="50" y="50" class="t-s">Battery DC (48 V)</text>
+    <path d="M0 70 H40" class="w-ac"/><text x="50" y="74" class="t-s">AC 120/240 V</text>
+    <path d="M220 22 H260" class="w-gas"/><text x="270" y="26" class="t-s">Propane line</text>
+    <path d="M220 46 H260" class="w-ctl"/><text x="270" y="50" class="t-s">Control signal</text>
+    <path d="M220 70 H260" class="w-future"/><text x="270" y="74" class="t-s">Phase 2 (future)</text>
+  </g>
+</svg>

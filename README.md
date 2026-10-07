@@ -18,4 +18,5 @@ Solar + battery + generator system for Chef Nick's 560 sq ft workshop/kitchen, d
 
 ## Status
 - 2026-10-06: Repo created, intake questionnaire drafted.
-- 2026-10-06: Site walkthrough, off-grid design basis, preliminary load calc + sizing (docs/04). Architecture: one central expandable system. Next: one-line schematic + priced BOM.
+- 2026-10-06: Site walkthrough, off-grid design basis, preliminary load calc + sizing (docs/04). Architecture: one central expandable system. 
+- 2026-10-06: EG4 parts-only BOM (docs/05-bom.md, bom.csv), one-line schematic (site/schematic.svg), proposal page (site/index.html, rebuild with `python calc/build_page.py`). Published: https://claude.ai/artifact/C2YyRvJhQ2ShejyRCWfYSW
