@@ -185,12 +185,12 @@ a:focus-visible {{ outline: 2px solid var(--sun); outline-offset: 2px; }}
     <h2>Parts list and estimate</h2>
     <p class="src">Parts only, no labor. EG4 equipment, new; buying used where noted can lower it. Prices researched October 2026.</p>
     <div class="specs">
-      <div class="sheet spec"><span class="label">Phase 1 · kitchen now</span><div class="big">{fmt(t1['glo'], t1['ghi'])}</div><p>15.84 kW solar, 2 inverters, 42.9 kWh battery, 24 kW generator, power shed sized for Phase 2.</p></div>
-      <div class="sheet spec"><span class="label">Phase 2 · house later</span><div class="big">{fmt(t2['glo'], t2['ghi'])}</div><p>Adds 15.84 kW solar (31.7 kW total), 2 inverters (24 kW total), 3 batteries (85.8 kWh total) and the house feeder. Generator and shed are shared. Today's prices.</p></div>
+      <div class="sheet spec"><span class="label">Phase 1 · kitchen now · this quote</span><div class="big">{fmt(t1['glo'], t1['ghi'])}</div><p>15.84 kW solar, 2 inverters, 42.9 kWh battery, 24 kW generator, power shed sized for Phase 2.</p></div>
+      <div class="sheet spec"><span class="label">Phase 2 · house later · future estimate, not in this quote</span><div class="big">{fmt(t2['glo'], t2['ghi'])}</div><p>Adds 15.84 kW solar (31.7 kW total), 2 inverters (24 kW total), 3 batteries (85.8 kWh total) and the house feeder. Generator and shed are shared. Today's prices.</p></div>
     </div>
     <h3>Phase 1: power the kitchen now</h3>
     {bom_table(1)}
-    <h3>Phase 2: expand for the house</h3>
+    <h3>Phase 2: expand for the house (future, not part of this quote)</h3>
     <p class="src">Assumes a ~2,000 sq ft house on propane for cooking, water and heat, about 25 kWh/day. Electric heat, an EV charger or a pool would change this.</p>
     {bom_table(2)}
   </section>
