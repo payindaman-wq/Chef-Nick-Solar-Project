@@ -4,7 +4,7 @@
   </defs>
   <!-- Power shed boundary -->
   <rect x="260" y="40" width="640" height="460" rx="6" class="zone"/>
-  <text x="276" y="62" class="zlabel">POWER SHED · 8×10 insulated</text>
+  <text x="276" y="62" class="zlabel">POWER SHED · 10×12 insulated</text>
 
   <!-- PV array -->
   <text x="20" y="52" class="zlabel">GROUND-MOUNT ARRAY</text>

@@ -1,7 +1,8 @@
 """Build site/index.html (proposal page for Nick) from the load calc, BOM and schematic. Run: python calc/build_page.py"""
 import html, pathlib
 from load_calc import LOADS, DEC_PSH, SYS_EFF
-from bom import BOM, TAX, CONTINGENCY
+from bom import BOM, PHASES, totals
+from questions import QUESTIONS, markdown
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 svg = (ROOT / "site" / "schematic.svg").read_text(encoding="utf-8")
@@ -12,17 +13,32 @@ for n, (w, h, d, _s) in LOADS.items():
     k = w * h * d / 1000; total += k
     load_rows.append(f"<tr><td>{e(n)}</td><td class=n>{w:,}</td><td class=n>{h:g}</td><td class=n>{d:.0%}</td><td class=n>{k:.1f}</td></tr>")
 
-bom_rows, lo, hi, cat_prev = [], 0, 0, None
-for c, i, q, l, h, note in BOM:
-    lo += q * l; hi += q * h
-    cat = f"<tr class=cat><th colspan=4>{e(c)}</th></tr>" if c != cat_prev else ""
-    cat_prev = c
-    bom_rows.append(f"{cat}<tr><td>{e(i)}{'<div class=note>' + e(note) + '</div>' if note else ''}</td>"
-                    f"<td class=n>{q}</td><td class=n>${l:,}–{h:,}</td><td class=n>${q*l:,}–{q*h:,}</td></tr>")
-tlo, thi = lo * TAX, hi * TAX
-clo, chi = (lo + tlo) * CONTINGENCY, (hi + thi) * CONTINGENCY
-glo, ghi = lo + tlo + clo, hi + thi + chi
 fmt = lambda a, b: f"${a:,.0f}–{b:,.0f}"
+
+def bom_table(phase):
+    rows, cat_prev = [], None
+    for p, c, i, q, l, h, note in BOM:
+        if p != phase: continue
+        if c != cat_prev: rows.append(f"<tr class=cat><th colspan=4>{e(c)}</th></tr>"); cat_prev = c
+        rows.append(f"<tr><td>{e(i)}{'<div class=note>' + e(note) + '</div>' if note else ''}</td>"
+                    f"<td class=n>{q}</td><td class=n>${l:,}–{h:,}</td><td class=n>${q*l:,}–{q*h:,}</td></tr>")
+    t = totals(phase)
+    return f"""<div class="sheet scroll"><table>
+        <thead><tr><th>Item</th><th class=n>Qty</th><th class=n>Unit</th><th class=n>Total</th></tr></thead>
+        <tbody>{''.join(rows)}</tbody>
+        <tfoot>
+          <tr class=sub><td colspan=3>Subtotal</td><td class=n>{fmt(t['lo'], t['hi'])}</td></tr>
+          <tr><td colspan=3>Sales tax, Washoe County 8.265%</td><td class=n>{fmt(t['tlo'], t['thi'])}</td></tr>
+          <tr><td colspan=3>Contingency 10%</td><td class=n>{fmt(t['clo'], t['chi'])}</td></tr>
+          <tr class=grand><td colspan=3>{e(PHASES[phase])} total</td><td class=n>{fmt(t['glo'], t['ghi'])}</td></tr>
+        </tfoot></table></div>"""
+
+t1, t2 = totals(1), totals(2)
+glo, ghi = t1['glo'], t1['ghi']
+q_html, qn = [], 1
+for group, qs in QUESTIONS:
+    items = "".join(f"<li value={qn + k}>{e(q)}</li>" for k, q in enumerate(qs)); qn += len(qs)
+    q_html.append(f"<div class='sheet qgroup'><h3>{e(group)}</h3><ol class=steps>{items}</ol></div>")
 
 page = f"""<title>Chef Nick Off-Grid Power</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -100,6 +116,10 @@ tfoot tr.grand td {{ font: 700 20px var(--display); border-top: 2px solid var(--
 ul.plain {{ margin: 0; padding-left: 20px; display: grid; gap: 6px; max-width: 70ch; }}
 ul.plain li::marker {{ color: var(--sun); }}
 ol.steps {{ margin: 0; padding-left: 22px; display: grid; gap: 6px; }}
+ol.steps li {{ max-width: 68ch; }}
+.qgrid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }}
+.qgroup {{ display: grid; gap: 10px; align-content: start; }}
+.qgroup h3 {{ color: var(--sun); }}
 .src {{ font-size: 13.5px; color: var(--ink-2); }}
 .src a {{ color: var(--ac); }}
 a:focus-visible {{ outline: 2px solid var(--sun); outline-offset: 2px; }}
@@ -164,18 +184,15 @@ a:focus-visible {{ outline: 2px solid var(--sun); outline-offset: 2px; }}
   <section>
     <h2>Parts list and estimate</h2>
     <p class="src">Parts only, no labor. EG4 equipment, new; buying used where noted can lower it. Prices researched October 2026.</p>
-    <div class="sheet scroll">
-      <table>
-        <thead><tr><th>Item</th><th class=n>Qty</th><th class=n>Unit</th><th class=n>Total</th></tr></thead>
-        <tbody>{''.join(bom_rows)}</tbody>
-        <tfoot>
-          <tr class=sub><td colspan=3>Subtotal</td><td class=n>{fmt(lo, hi)}</td></tr>
-          <tr><td colspan=3>Sales tax, Washoe County 8.265%</td><td class=n>{fmt(tlo, thi)}</td></tr>
-          <tr><td colspan=3>Contingency 10%</td><td class=n>{fmt(clo, chi)}</td></tr>
-          <tr class=grand><td colspan=3>Estimated parts total</td><td class=n>{fmt(glo, ghi)}</td></tr>
-        </tfoot>
-      </table>
+    <div class="specs">
+      <div class="sheet spec"><span class="label">Phase 1 · kitchen now</span><div class="big">{fmt(t1['glo'], t1['ghi'])}</div><p>15.84 kW solar, 2 inverters, 42.9 kWh battery, 24 kW generator, power shed sized for Phase 2.</p></div>
+      <div class="sheet spec"><span class="label">Phase 2 · house later</span><div class="big">{fmt(t2['glo'], t2['ghi'])}</div><p>Adds 15.84 kW solar (31.7 kW total), 2 inverters (24 kW total), 3 batteries (85.8 kWh total) and the house feeder. Generator and shed are shared. Today's prices.</p></div>
     </div>
+    <h3>Phase 1: power the kitchen now</h3>
+    {bom_table(1)}
+    <h3>Phase 2: expand for the house</h3>
+    <p class="src">Assumes a ~2,000 sq ft house on propane for cooking, water and heat, about 25 kWh/day. Electric heat, an EV charger or a pool would change this.</p>
+    {bom_table(2)}
   </section>
 
   <section class="two">
@@ -186,7 +203,7 @@ a:focus-visible {{ outline: 2px solid var(--sun); outline-offset: 2px; }}
         <li>Well, pump and pressure tank (choose a soft-start pump)</li>
         <li>Propane tank, gas lines and gas-fitter labor</li>
         <li>Kitchen wiring past the 100 A panel, appliances, mini-split</li>
-        <li>Phase 2 house equipment</li>
+        <li>House wiring past its panel</li>
       </ul>
     </div>
     <div style="display:grid;gap:14px;align-content:start;min-width:0">
@@ -201,6 +218,12 @@ a:focus-visible {{ outline: 2px solid var(--sun); outline-offset: 2px; }}
     </div>
   </section>
 
+  <section>
+    <h2>Questions for Nick</h2>
+    <p class="src">Answers to these tighten the sizing and the price.</p>
+    <div class="qgrid">{''.join(q_html)}</div>
+  </section>
+
   <p class="src">Price sources: <a href="https://signaturesolar.com/eg4-6000xp-off-grid-inverter-split-phase/">EG4 6000XP (Signature Solar)</a> ·
   <a href="https://shopsolarkits.com/products/eg4-wallmount-indoor-lithium-battery">EG4 WallMount Indoor (Shop Solar Kits)</a> ·
   <a href="https://www.generac.com/residential-products/standby-generators/gaseous/24kw-standby-generator-wifi-enabled-7209/">Generac 24 kW 7209</a> ·
@@ -209,4 +232,5 @@ a:focus-visible {{ outline: 2px solid var(--sun); outline-offset: 2px; }}
 </div>
 """
 (ROOT / "site" / "index.html").write_text(page, encoding="utf-8")
+(ROOT / "docs" / "06-questions-for-nick.md").write_text(markdown(), encoding="utf-8")
 print(f"wrote site/index.html  load {total:.1f} kWh/day  parts {fmt(glo, ghi)}")

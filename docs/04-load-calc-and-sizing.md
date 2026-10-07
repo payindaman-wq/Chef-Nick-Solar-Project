@@ -35,7 +35,7 @@ well being drilled, ground mount acceptable.
 | Inverter | 2 x EG4 6000XP in parallel (12 kW, 24 kW surge, 16 kW PV input) | Chosen 2026-10-06 over one 18kPV: cheaper, off-grid native, redundant. Phase 2 adds more units. |
 | Battery | Start with 42.9 kWh (3 x EG4 WallMount Indoor 14.3 kWh), add a 4th for ~57 kWh / 1.25 days | Frugal start chosen 2026-10-06. Generator auto-starts below ~25-30% charge. |
 | Generator | 24 kW propane standby (Generac class) | Charges batteries in winter/cloudy stretches. Must accept a 2-wire start signal. Confirm warranty covers off-grid "prime power" use before buying. |
-| Power shed | ~8x10 insulated shed between the kitchen and future house site, small heater to keep batteries above 32 F | Keeps batteries, heat and noise out of the kitchen; becomes the hub for the house in Phase 2. Generator on a pad next to it. |
+| Power shed | ~10x12 insulated shed (sized for Phase 2) between the kitchen and future house site, small heater to keep batteries above 32 F | Keeps batteries, heat and noise out of the kitchen; becomes the hub for the house in Phase 2. Generator on a pad next to it. |
 | Well pump | Soft-start / variable-speed pump (Grundfos SQ type) + pressure tank | Cuts the ~7.5 kW start-up surge to ~2-3 kW, so the inverter doesn't need extra surge headroom. |
 | Feeders | PV strings -> shed (high-voltage DC, small wire); 100 A AC feeder shed -> kitchen panel | Trenched in conduit. Short runs keep wire cost down. |
 
