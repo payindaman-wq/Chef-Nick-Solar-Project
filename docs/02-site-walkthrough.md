@@ -14,8 +14,8 @@ Source: IMG_2486.mov (48 s video walkthrough with narration). Frames: `media/wal
   three-compartment sink + drying rack, prep tables, fridge, cabinets, subpanel location.
 - **Three-compartment sink + separate hand sink = commercial kitchen layout** (health-department requirement). Treat as
   commercial: permits, inspection, and probably a licensed electrician's sign-off.
-- **The 100 A panel is a SUBPANEL**, so it is fed from an existing service on the property. Utility power likely exists, which
-  makes a hybrid (grid + battery + generator) system possible instead of off-grid.
+- Panel narrated as "sub panel", but the site has **no utility service** (confirmed 2026-10-06). The 100 A panel will be the
+  load center fed by the off-grid inverter output.
 - Multiple windows (at least 4 seen); several walls are free for an equipment wall if the batteries go inside.
 
 ## Load-driving items identified (need nameplate data)
